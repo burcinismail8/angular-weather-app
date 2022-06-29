@@ -5,10 +5,11 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, RouterModule.forRoot([]), HttpClientModule],
+  imports: [BrowserModule, RouterModule.forRoot([]), HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

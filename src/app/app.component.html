@@ -1,11 +1,31 @@
-<div class="container">
+<div class="search">
+  <form #form="ngForm" (submit)="onSubmit()">
+    <input
+      type="text"
+      placeholder="Search city"
+      name="city"
+      [(ngModel)]="cityName"
+    />
+  </form>
+</div>
+<div class="container" *ngIf="weatherData">
   <div class="upper-data">
-    <img src="../assets/frozen-g6e8df364a_1920.jpg" alt="cold" />
-    <img src="../assets/nature-g3da251047_1920.jpg" alt="hot" />
+    <img
+      src="../assets/frozen-g6e8df364a_1920.jpg"
+      alt="cold"
+      *ngIf="weatherData.main.temp < 14"
+    />
+    <img
+      src="../assets/nature-g3da251047_1920.jpg"
+      alt="hot"
+      *ngIf="weatherData.main.temp >= 14"
+    />
 
     <div class="weather-data">
-      <div class="location">Wellington</div>
-      <div class="temperature">{{ 14.4 | number: "1.0-0" }}°C</div>
+      <div class="location">{{ weatherData.name }}</div>
+      <div class="temperature">
+        {{ weatherData.main.temp | number: "1.0-0" }}°C
+      </div>
     </div>
   </div>
   <div class="lower-data">
@@ -16,28 +36,34 @@
           <i class="fa-solid fa-temperature-arrow-down"></i>
           <span>min</span>
         </div>
-        <div class="info-block-value">10°C</div>
+        <div class="info-block-value">
+          {{ weatherData.main.temp_min | number: "1.0-0" }}°C
+        </div>
       </div>
       <div class="info-block">
         <div class="info-block-label">
           <i class="fa-solid fa-temperature-arrow-up"></i>
           <span>max</span>
         </div>
-        <div class="info-block-value">17°C</div>
+        <div class="info-block-value">
+          {{ weatherData.main.temp_max | number: "1.0-0" }}°C
+        </div>
       </div>
       <div class="info-block">
         <div class="info-block-label">
           <i class="fa-solid fa-droplet"></i>
           <span>humidity</span>
         </div>
-        <div class="info-block-value">77%</div>
+        <div class="info-block-value">{{ weatherData.main.humidity }}%</div>
       </div>
       <div class="info-block">
         <div class="info-block-label">
           <i class="fa-solid fa-wind"></i>
           <span>wind</span>
         </div>
-        <div class="info-block-value">11 km/h</div>
+        <div class="info-block-value">
+          {{ weatherData.wind.speed | number: "1.0-0" }} km/h
+        </div>
       </div>
     </div>
   </div>
